@@ -1,15 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import "./styles/base.scss";
 import reportWebVitals from './reportWebVitals';
+import { LoginPage } from './pages/LoginPage/LoginPage';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './theme/theme';
+import { GlobalStyle } from './theme/globalStyle';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <LoginPage />
+  },
+])
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </React.StrictMode>
 );
 
