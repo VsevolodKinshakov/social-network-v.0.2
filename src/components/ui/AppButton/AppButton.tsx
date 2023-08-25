@@ -1,11 +1,22 @@
 import React from "react";
+import { Button } from "./AppButton.style";
 
-type AppButtonProps = {
-  buttonText: string
+
+interface AppButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  buttonText: string;
+  isPrimary?: boolean;
+  isSecondary?: boolean;
 }
 
-export const AppButton = ({ buttonText }: AppButtonProps) => {
+
+export const AppButton = ({ buttonText, isPrimary, isSecondary, type }: AppButtonProps) => {
   return (
-    <button>{buttonText}</button>
+    <Button
+      isPrimary={isPrimary}
+      isSecondary={isSecondary}
+      type={type}
+    >
+      {buttonText}
+    </Button>
   )
 }

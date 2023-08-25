@@ -1,3 +1,21 @@
+export type ColorTypes = {
+  bgc: string,
+  elemsBgc: string,
+  primeColor: string,
+  darkPrime: string,
+  lightPrime: string,
+  textColor: string,
+  hoverText: string,
+  darkGray: string,
+  gray: string,
+  lightGray: string,
+  placeholderColor: string,
+  disabledBgc: string,
+  red: string,
+  green: string,
+  blue: string,
+}
+
 export const colors = {
   bgc: '#f6f6f6',
   elemsBgc: '#fff',

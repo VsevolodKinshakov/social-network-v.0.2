@@ -1,18 +1,26 @@
 import React from "react";
-import { Input } from "./AppInput.style";
+import { Input, InputContainer, ErrorMessage } from "./AppInput.style";
 
-type InputProps = {
-  type: 'text' | 'tel' | 'password',
-  placeholder: string,
-  isDisabled: boolean,
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  type: "text" | "tel" | "password" | "eMail";
+  placeholder: string;
+  isDisabled?: boolean;
+  hasError?: boolean;
+  errorText?: string;
 }
 
-export const AppInput = ({ type, placeholder, isDisabled }: InputProps) => {
+export const AppInput = ({
+  type,
+  placeholder,
+  isDisabled = false,
+  hasError = false,
+  errorText,
+  ...props
+}: InputProps) => {
   return (
-    <Input 
-      type={type} 
-      placeholder={placeholder} 
-      disabled={isDisabled} 
-    />
-  )
-}
+    <InputContainer>
+      {hasError && <ErrorMessage>{errorText}</ErrorMessage>}
+      <Input type={type} placeholder={placeholder} disabled={isDisabled} hasError={hasError} {...props} />
+    </InputContainer>
+  );
+};

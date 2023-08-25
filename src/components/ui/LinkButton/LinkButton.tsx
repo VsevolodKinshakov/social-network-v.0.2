@@ -1,11 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-type LinkButtonProps = {
-  linkText: string
-}
+type LinkProps = {
+    linkText: string;
+    to: string;
+};
 
-export const LinkButton = ({ linkText }: LinkButtonProps) => {
-  return (
-    <a href="#">{linkText}</a>
-  )
-}
+const LinkButton = ({ linkText, to }: LinkProps) => {
+    return <Link to={to}>{linkText}</Link>;
+};
+
+export default LinkButton;
+

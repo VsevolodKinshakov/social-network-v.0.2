@@ -1,22 +1,35 @@
 import styled from "styled-components";
 
-export const Input = styled.input<{ disabled: boolean }>`
+export const InputContainer = styled.div`
+  position: relative;
+`;
+
+export const Input = styled.input<{ disabled: boolean; hasError: boolean }>`
   display: block;
   width: 100%;
   margin-bottom: 20px;
-  border: 2px solid ${(props) => props.theme.colors.disabledBgc};
+  border: 2px solid ${(props) => (props.hasError ? "red" : props.theme.colors.disabledBgc)};
   background-color: transparent;
 
   &:last-child {
     margin-bottom: 40px;
   }
 
-  &:is(:hover, :focus) {
+  &:hover,
+  &:focus {
     border-color: ${(props) => props.theme.colors.primeColor};
   }
 
-  ${(props) => props.disabled && `
+  ${(props) =>
+    props.disabled &&
+    `
     opacity: 0.5;
     pointer-events: none;
   `}
-`
+`;
+
+export const ErrorMessage = styled.p`
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+`;

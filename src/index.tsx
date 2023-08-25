@@ -7,12 +7,28 @@ import { LoginPage } from './pages/LoginPage/LoginPage';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './theme/theme';
 import { GlobalStyle } from './theme/globalStyle';
+import { MainPage } from './pages/MainPage/MainPage';
+import { ProfilePage } from './pages/ProfilePage/ProfilePage';
+import { Registration } from './pages/Registration/Registration';
+
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <LoginPage />
   },
+  {
+    path: '/main',
+    element: <MainPage />
+  },  
+  {
+    path: '/profile',
+    element: <ProfilePage />
+  },
+  {
+    path: '/reg',
+    element: <Registration />
+  },  
 ])
 
 const root = ReactDOM.createRoot(
