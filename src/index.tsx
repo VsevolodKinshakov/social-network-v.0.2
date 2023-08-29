@@ -10,6 +10,8 @@ import { GlobalStyle } from './theme/globalStyle';
 import { MainPage } from './pages/MainPage/MainPage';
 import { ProfilePage } from './pages/ProfilePage/ProfilePage';
 import { Registration } from './pages/Registration/Registration';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
 
 const router = createBrowserRouter([
@@ -36,10 +38,12 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+    <Provider store={store}>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <RouterProvider router={router} />
     </ThemeProvider>
+    </Provider>
   </React.StrictMode>
 );
 

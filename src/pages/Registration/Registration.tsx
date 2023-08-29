@@ -10,7 +10,10 @@ import LinkButton from "../../components/ui/LinkButton/LinkButton";
 
 export const Registration = () => {
   const validationSchema = yup.object({
-    fullName: yup.string().required("Обязательное поле"),
+    fullName: yup
+      .string()
+      .matches(/^[A-Za-zА-Яа-яЁё\s]*$/, 'Поле может содержать только буквы и пробелы')
+      .required("Обязательное поле"),
     email: yup.string().email("Неверный формат email").required("Обязательное поле"),
     password: yup.string().required("Обязательное поле"),
     confirmPassword: yup
