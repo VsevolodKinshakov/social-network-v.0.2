@@ -3,8 +3,9 @@ import { LeftNav } from "./LeftNavigation.style";
 
 
 export const LeftNavigation = () => {
-    return (
-        <LeftNav>
+  return (
+    <LeftNav>
+      <nav className="Navbar">
         <ul className="navbar__list">
           <li className="navbar__item">
             <svg
@@ -161,6 +162,7 @@ export const LeftNavigation = () => {
             <span className="Badge">100</span>
           </li>
         </ul>
-      </LeftNav>
-    )
+      </nav>
+    </LeftNav>
+  )
 }

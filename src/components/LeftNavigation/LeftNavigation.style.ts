@@ -8,6 +8,7 @@ export const LeftNav = styled.nav`
   padding: calc(1vw + 11px);
   background-color: var(--elems-bgc);
   color: var(--text-color);
+  
 
   .navbar__list {
     display: flex;
@@ -59,3 +60,4 @@ export const LeftNav = styled.nav`
   }
 }
       `
+      

@@ -8,8 +8,6 @@ import {
   RegistrationIcon,
 } from "./RegistrationInfo.style";
 import LinkButton from "../LinkButton/LinkButton";
-import { Link } from "react-router-dom";
-
 
 type RegistrationIconProps = {
   className: string;
