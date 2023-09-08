@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { baseUrl } from "../../utils/baseUrl";
 
 interface NewPostPayload {
-  photo_file: string;
+  photo_file?: string | null;
   user_id: number;
   main_text: string;
 }

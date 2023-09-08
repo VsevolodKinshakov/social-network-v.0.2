@@ -9,6 +9,7 @@ interface ISVG {
   transform?: string;
   padding?: string;
   stroke?: string;
+  borderRadius?: string;
 }
 
 const StyledSVGIcon = styled(ReactSVG)<ISVG>`
@@ -33,7 +34,9 @@ const StyledSVGIcon = styled(ReactSVG)<ISVG>`
         transform: ${props.transform};
       `};
     vertical-align: middle;
-
+    cursor: pointer;
+    padding: ${(props) => props.padding || 0}px;
+    border-radius: ${(props) => props.borderRadius || 0}px;
     path {
       ${(props) =>
         props.color &&
@@ -47,7 +50,13 @@ const StyledSVGIcon = styled(ReactSVG)<ISVG>`
           stroke: ${props.stroke};
         `};
     }
+    box-sizing: content-box;
   }
+  &:hover {
+        border-color: ${(props) => props.theme.colors.lightGray};
+        background-color: ${(props) => props.theme.colors.bgc};
+      }
+
 `;
 
 interface IIcon extends ISVG {

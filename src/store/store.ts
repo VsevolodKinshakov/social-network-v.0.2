@@ -1,14 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
 import auth from "./slices/auth"
 import { authApi } from "./api/authApi";
+import { postApi } from "./api/postApi";
+
 
 export const store = configureStore({
     reducer: {
         auth,
         [authApi.reducerPath]: authApi.reducer,
+        [postApi.reducerPath]: postApi.reducer,
     },
     middleware: getDefaultMiddleware => getDefaultMiddleware().concat([
         authApi.middleware,
+        postApi.middleware,
     ])
 })
 
