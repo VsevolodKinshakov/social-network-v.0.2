@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { useForm, Controller, SubmitHandler } from 'react-hook-form'
-import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./LoginPage.scss";
 import { Heading } from "../../typography/Heading";
@@ -11,19 +10,18 @@ import { LayoutContainer } from "../../components/ui/LayoutContainer/LayoutConta
 import LinkButtonWithModal from "../../components/ui/ModalForgotPassword/LinkButtonWithModal";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-import { setUser } from "../../store/slices/auth";
-import { RootState } from "../../store/store";
+import { useLoginUserMutation } from "../../store/api/authApi";
 
 
 
 interface LoginPageForm {
   userPassword: string,
-  userPhone: string,
+  userEmail: string,
 }
 
 const loginPageSchema = yup.object({
   userPassword: yup.string().required('Обязательное поле'),
-  userPhone: yup.string().required('Обязательное поле')
+  userEmail: yup.string().required('Обязательное поле')
 })
 
 
@@ -33,25 +31,27 @@ export const LoginPage = () => {
     resolver: yupResolver(loginPageSchema),
     defaultValues: {
       userPassword: '',
-      userPhone: ''
+      userEmail: ''
     }
 
   });
 
-  const user = useSelector((state: RootState) => state.auth.user)
-  const dispatch = useDispatch()
+  const [loginUser, { data: userdata }] = useLoginUserMutation()
+
   const navigate = useNavigate()
 
   useEffect(()=> {
-    if (user?.email) {
+    if (userdata?.user_id) {
       navigate('/main')
     }
-  }, [user, navigate])
+  }, [userdata, navigate])
 
-  console.log('errors', errors)
 
-  const onSubmit: SubmitHandler<any> = (data) => {
-    dispatch(setUser({email: 'test@gmail.com'}))
+  const onSubmit: SubmitHandler<LoginPageForm> = (data) => {
+    loginUser ({
+      email: data.userEmail,
+      password: data.userPassword
+    })
   }
 
 
@@ -62,16 +62,16 @@ export const LoginPage = () => {
         <Heading type="h1" headingText="Авторизация" />
         <form onSubmit={handleSubmit(onSubmit)}>
           <Controller
-            name="userPhone"
+            name="userEmail"
             control={control}
             render={({ field }) => {
               return (
                 <AppInput
-                  type="tel"
-                  placeholder="Номер Телефона"
+                  type="text"
+                  placeholder="Почтовый ящик"
                   isDisabled={false}
-                  hasError={!!errors?.userPhone}
-                  errorText={errors?.userPhone?.message}
+                  hasError={!!errors?.userEmail}
+                  errorText={errors?.userEmail?.message}
                   {...field}
                 />
               )
@@ -82,7 +82,7 @@ export const LoginPage = () => {
             render={({ field }) =>
               <AppInput
                 type="password"
-                placeholder="Пароль"
+                placeholder="Введите пароль"
                 isDisabled={false}
                 hasError={!!errors?.userPassword}
                 errorText={errors?.userPassword?.message}
@@ -93,7 +93,6 @@ export const LoginPage = () => {
             type="submit"
             buttonText="Войти"
             isPrimary={true}
-            onClick={() => dispatch(setUser({ email: 'test' }))} 
             />
         </form>
         <LinkButtonWithModal />

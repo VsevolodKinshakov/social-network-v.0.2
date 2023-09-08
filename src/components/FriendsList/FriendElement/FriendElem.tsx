@@ -1,5 +1,5 @@
 import React from "react";
-import { FrienElemStyle } from "./FriendElem.style";
+import { FriendElemStyle } from "./FriendElemStyle.style";
 
 interface FriendElemProps {
   src: string;
@@ -9,10 +9,10 @@ interface FriendElemProps {
 
 export const FriendElem = ({ src, alt, secondaryText }: FriendElemProps) => {
   return (
-    <FrienElemStyle>
+    <FriendElemStyle>
       <img src={src} alt={alt} />
       <span className="friend__name">{secondaryText}</span>
-    </FrienElemStyle>
+    </FriendElemStyle>
   );
 };
 

@@ -1,5 +1,4 @@
 import React from "react";
-import LinkButton from "../../components/ui/LinkButton/LinkButton";
 import { IconsWrapper, RegistrationContainer, RegistrationIcon, RegistrationParagraph} from "../../components/ui/RegistrationInfo/RegistrationInfo.style";
 
 

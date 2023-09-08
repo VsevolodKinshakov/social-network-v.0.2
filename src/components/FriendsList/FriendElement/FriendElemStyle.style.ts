@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FrienElemStyle = styled.div`
+export const FriendElemStyle = styled.div`
       img {
         display: block;
         margin: 0 auto 10px;
